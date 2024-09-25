@@ -1,13 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+
+import "./assets/styles/index.css";
+import "./assets/styles/bootstrap.custom.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import HomeScreen from "./screens/HomeScreen";
+import ProudctScreen from "./screens/ProudctScreen";
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route index={true} path="/" element={<HomeScreen />} />
+      <Route path="/product/:id" element={<ProudctScreen />} />
+    </Route>
+  )
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
